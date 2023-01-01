@@ -1,0 +1,9 @@
+C:\Users\User\source\repos\final_project\final_project\bin\Debug\final_project.exe.config
+C:\Users\User\source\repos\final_project\final_project\bin\Debug\final_project.exe
+C:\Users\User\source\repos\final_project\final_project\bin\Debug\final_project.pdb
+C:\Users\User\source\repos\final_project\final_project\obj\Debug\final_project.csprojAssemblyReference.cache
+C:\Users\User\source\repos\final_project\final_project\obj\Debug\final_project.Form1.resources
+C:\Users\User\source\repos\final_project\final_project\obj\Debug\final_project.Properties.Resources.resources
+C:\Users\User\source\repos\final_project\final_project\obj\Debug\final_project.csproj.GenerateResource.cache
+C:\Users\User\source\repos\final_project\final_project\obj\Debug\final_project.exe
+C:\Users\User\source\repos\final_project\final_project\obj\Debug\final_project.pdb
