@@ -22,32 +22,32 @@ namespace final_project
         public Form1()
         {
             InitializeComponent();
+            label2.Text = x.ToString() + "分" + y.ToString() + "秒";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             score = 0;
-            //label4.Text = score.ToString();
             x = 1;
             y = 0;
             
             InitButton();
-            //InitList();
-            SuffleListAndColor();
+            SuffleListAndColor_easy();
             button1.Enabled = false;
             timer1.Start();
+        }
 
-            //Console.WriteLine(buttonList[1].Tag.ToString());
+        private void button2_Click(object sender, EventArgs e)
+        {
+            score = 0;
+            label4.Text = score.ToString();
+            x = 1;
+            y = 0;
 
-            for (int i = 0; i < buttonList.Count; i++)
-            {
-                //Console.WriteLine(numberList[i]);
-                //Console.WriteLine(buttonList[i].Tag.ToString());
-            }
-
-            //Random random = new Random();
-            //Console.WriteLine(buttonList.Count);
-            //Console.WriteLine(random.Next(0, buttonList.Count+1));
+            InitButton();
+            SuffleListAndColor_easy();
+            button1.Enabled = false;
+            timer1.Start();
         }
 
         void InitButton()
@@ -105,7 +105,53 @@ namespace final_project
             }
         }
 
-        void SuffleListAndColor()
+        void SuffleListAndColor_easy()
+        {
+            InitList();
+            Random random = new Random();
+
+            int x = random.Next(1, 255);
+            int y = random.Next(1, 255);
+            int z = random.Next(1, 255);
+            int random_x = 0;
+            int random_y = 0;
+            int random_z = 0;
+            //initList();
+
+
+            for (int i = 0; i < buttonList.Count; i++)
+            {
+                int randomNumber = random.Next(1, buttonList.Count);
+                int temp = numberList[i];
+                numberList[i] = numberList[randomNumber];
+                numberList[randomNumber] = temp;
+            }
+
+            for (int i = 0; i < buttonList.Count; i++)
+            {
+                //buttonList[i].Text = "";
+                buttonList[i].Tag = numberList[i];
+                buttonList[i].Name = "button" + Convert.ToString(buttonList[i].Tag);
+                //buttonList[i].Text = Convert.ToString(buttonList[i].Tag);
+
+                buttonList[i].BackColor = System.Drawing.Color.FromArgb(x, y, z);
+
+                if (buttonList[i].Tag.Equals(18))
+                {
+                    if (x < 128) random_x = (x + 50);
+                    if (y < 128) random_y = (y + 50);
+                    if (z < 128) random_z = (z + 50);
+                    if (x > 129) random_x = (x - 50);
+                    if (y > 129) random_y = (y - 50);
+                    if (z > 129) random_z = (z - 50);
+                    //buttonList[buttonList.Count - 1].BackColor = System.Drawing.Color.FromArgb(100, 100, 100);
+                    buttonList[i].BackColor = System.Drawing.Color.FromArgb(random_x, random_y, random_z);
+                }
+            }
+            //Console.WriteLine(random.Next(0, buttonList.Count));
+        }
+
+        void SuffleListAndColor_normal()
         {
             InitList();
             Random random = new Random();
@@ -151,6 +197,52 @@ namespace final_project
             //Console.WriteLine(random.Next(0, buttonList.Count));
         }
 
+        void SuffleListAndColor_hard()
+        {
+            InitList();
+            Random random = new Random();
+
+            int x = random.Next(1, 255);
+            int y = random.Next(1, 255);
+            int z = random.Next(1, 255);
+            int random_x = 0;
+            int random_y = 0;
+            int random_z = 0;
+            //initList();
+
+
+            for (int i = 0; i < buttonList.Count; i++)
+            {
+                int randomNumber = random.Next(1, buttonList.Count);
+                int temp = numberList[i];
+                numberList[i] = numberList[randomNumber];
+                numberList[randomNumber] = temp;
+            }
+
+            for (int i = 0; i < buttonList.Count; i++)
+            {
+                //buttonList[i].Text = "";
+                buttonList[i].Tag = numberList[i];
+                buttonList[i].Name = "button" + Convert.ToString(buttonList[i].Tag);
+                //buttonList[i].Text = Convert.ToString(buttonList[i].Tag);
+
+                buttonList[i].BackColor = System.Drawing.Color.FromArgb(x, y, z);
+
+                if (buttonList[i].Tag.Equals(18))
+                {
+                    if (x < 128) random_x = (x + 10);
+                    if (y < 128) random_y = (y + 10);
+                    if (z < 128) random_z = (z + 10);
+                    if (x > 129) random_x = (x - 10);
+                    if (y > 129) random_y = (y - 10);
+                    if (z > 129) random_z = (z - 10);
+                    //buttonList[buttonList.Count - 1].BackColor = System.Drawing.Color.FromArgb(100, 100, 100);
+                    buttonList[i].BackColor = System.Drawing.Color.FromArgb(random_x, random_y, random_z);
+                }
+            }
+            //Console.WriteLine(random.Next(0, buttonList.Count));
+        }
+
         void Button_Click_Playgame(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -159,8 +251,21 @@ namespace final_project
             if (tag.Equals(18))
             {
                 score += 10;
-                SuffleListAndColor();
-               // button.BackColor = Color.AliceBlue;
+                if (score < 50)
+                {
+                    SuffleListAndColor_easy();
+                }
+                else if(score >= 50 && score < 150)
+                {
+                    SuffleListAndColor_normal();
+                }
+                else if (score >= 150)
+                {
+                    SuffleListAndColor_hard();
+                }
+
+
+                // button.BackColor = Color.AliceBlue;
             }
             else
             {
@@ -168,7 +273,13 @@ namespace final_project
                 //button.BackColor = Color.Black;
             }
             label4.Text = score.ToString();
-            
+
+            if (x == 0 && y == 0)
+            {
+                label4.Text = "0";
+
+            }
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
